@@ -1,0 +1,19 @@
+{
+  "name": "csim-guid",
+  "version": "1.0.0",
+  "description": "Generate chronologic, collision-resistant globally unique identifier",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitsrv:repo/csim-guid"
+  },
+  "keywords": [
+    "csim",
+    "guid"
+  ],
+  "author": "Michael Wynn",
+  "license": "ISC"
+}
