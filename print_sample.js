@@ -1,0 +1,29 @@
+/**
+ * Created on 7/28/15. Copyright Michael Wynn - all rights reserved.
+ */
+'use strict';
+
+console.log('Arguments: ', process.argv);
+
+var csim_guid = require('index');
+
+if(typeof csim_guid != 'function') {
+    console.log('Simulating browser mode...');
+    csim_guid = global.$csim.csim_guid;
+}
+
+var blocksOverride = +process.argv[2];
+if(blocksOverride > 0)
+    csim_guid.setRandomBlocks(blocksOverride);
+
+for (var i = 1; i< 5; i++){
+    var guid = csim_guid();
+    console.log('GUID: ', guid);
+    console.log('Breakdown: ', csim_guid.breakdown(guid));
+
+};
+
+var maxDate = csim_guid.timestampToDate('zzzzzzzzz');
+console.log('Max date value: ', maxDate);
+
+//console.log(guid.create());
