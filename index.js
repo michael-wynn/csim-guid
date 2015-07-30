@@ -9,7 +9,7 @@
  * 6. Seed the counter block with a random number rather than 0, for improved collision resistance.
  * 7. Option for changing guid length from default value of 25
  *
- * New structure: <timestamp(9)><counter(4)><random(remaining)>
+ *    New structure: <timestamp(9)><counter(4)><random(remaining)>
  *
  */
 'use strict';

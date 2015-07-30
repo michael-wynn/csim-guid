@@ -3,9 +3,7 @@
  */
 'use strict';
 
-console.log('Arguments: ', process.argv);
-
-var csim_guid = require('index');
+var csim_guid = require('./index');
 
 if(typeof csim_guid != 'function') {
     console.log('Simulating browser mode...');
@@ -23,7 +21,5 @@ for (var i = 1; i< 5; i++){
 
 };
 
-var maxDate = csim_guid.timestampToDate('zzzzzzzzz');
-console.log('Max date value: ', maxDate);
 
 //console.log(guid.create());
