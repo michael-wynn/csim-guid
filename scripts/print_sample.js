@@ -3,7 +3,7 @@
  */
 'use strict';
 
-var csim_guid = require('./index');
+var csim_guid = require('./../index');
 
 if(typeof csim_guid != 'function') {
     console.log('Simulating browser mode...');
