@@ -1,10 +1,10 @@
 {
   "name": "csim-guid",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Generate chronologic, collision-resistant globally unique identifier",
   "main": "index.js",
   "scripts": {
-    "start": "node ./print_sample.js",
+    "start": "node ./scripts/print_sample.js",
     "test": "mocha --watch"
   },
   "repository": {

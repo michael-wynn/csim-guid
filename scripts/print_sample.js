@@ -14,12 +14,6 @@ var blocksOverride = +process.argv[2];
 if(blocksOverride > 0)
     csim_guid.setRandomBlocks(blocksOverride);
 
-for (var i = 1; i< 5; i++){
-    var guid = csim_guid();
-    console.log('GUID: ', guid);
-    console.log('Breakdown: ', csim_guid.breakdown(guid));
-
-};
-
-
-//console.log(guid.create());
+var guid = csim_guid();
+console.log('GUID: ', guid);
+console.log('Breakdown: ', csim_guid.breakdown(guid));
