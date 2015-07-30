@@ -16,7 +16,7 @@ describe('csim-guid tests', function(){
         guid3,
         breakdown3;
 
-    describe('Guid basic makeup verification', function(){
+    describe('Guid basic makeup', function(){
 
         before(function(){
             g.setRandomBlocks(0);   //ensure default setting, expected to be 3
@@ -65,7 +65,7 @@ describe('csim-guid tests', function(){
 
     });
 
-    describe('Counter roll-over verification', function(){
+    describe('Counter roll-over', function(){
 
         before(function(){
             // attempt to generate 3 guids on same timestamp at artificially high
@@ -105,5 +105,29 @@ describe('csim-guid tests', function(){
 
     });
 
-})
+    describe('Random blocks override', function(){
+
+        it('5-blocks', function(){
+            g.setRandomBlocks(5);
+            guid1 = g();
+            guid2 = g();
+            breakdown1 = g.breakdown(guid1);
+            breakdown2 = g.breakdown(guid2);
+            assert(breakdown1.randomBlockLength == 4*5);
+            assert(breakdown2.randomBlockLength == 4*5);
+        });
+
+        it('3-blocks default', function(){
+            g.setRandomBlocks(0);
+            guid1 = g();
+            guid2 = g();
+            breakdown1 = g.breakdown(guid1);
+            breakdown2 = g.breakdown(guid2);
+            assert(breakdown1.randomBlockLength == 4*3);
+            assert(breakdown2.randomBlockLength == 4*3);
+        });
+
+    });
+
+});
 
