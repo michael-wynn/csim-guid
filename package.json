@@ -1,13 +1,13 @@
 {
   "name": "csim-guid",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "Generate chronologic, collision-resistant globally unique identifier",
   "main": "index.js",
   "scripts": {
     "start": "node ./scripts/usage.js",
     "test": "mocha --watch tests/specs/*.js",
     "karma": "karma start --browsers Chrome tests/configs/karma.conf.js",
-    "browserify": "browserify -r ./index.js:csim-guid -o browser/csim-guid.js && browserify -r power-assert -o tests/browser-lib/power-assert.js"
+    "browserify": "browserify -r ./index.js:csim-guid -o browser/csim-guid.js && browserify -r better-assert -o tests/browser-lib/power-assert.js"
   },
   "repository": {
     "type": "git",

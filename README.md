@@ -1,5 +1,5 @@
-# About csim-guid
-cism-guid is a collision-resistant GUID (Globally-Unique-Identifier) generation tool based on [Eric Elliott][eric]'s [cuid][cuid], with additional consistency and flexibility measures which are important to large-scale enterprise applications.  Although intended for the RAD platform _CSIMplex_ (a work-in-progress), it is a standalone tool that may be use in any Node or browser application. 
+# What Is It?
+csim-guid is a collision-resistant GUID (Globally-Unique-Identifier) generation tool based on [Eric Elliott][eric]'s [cuid][cuid], with additional consistency and flexibility measures which are important to large-scale enterprise applications.  Although intended for the RAD platform _CSIMplex_ (a work-in-progress), it is a standalone tool that may be use in any Node or browser application. 
 
 ## Motivations
 Of course, the [same motivations stated by Eric](https://www.npmjs.com/package/cuid#motivation) apply.  This work also aims to achieve these additional benefits:
@@ -16,29 +16,12 @@ Stable
 ```bash
 $ npm install --save csim-guid
 ```
-
-## Referencing csim-guid
-### Node JS
+## Usage
+### NodeJS
 ```js
 var guidTool = require('csim-guid');
-```
-### Browsers
-```html
-<!script type='text/javascript' src='path to index.js file from this package'/>
-```
-and then
-```js
-var guidTool = window.$csim.csim_guid;
-var newGuid = guidTool();
-```
-Note: all sources are contained in a single file; you may rename or distribute as part of a concatenated bundle.
 
-## Usage
-
-```js
-var guidTool = require('../index');
-
-/*Optional: set scale option once at app start.
+/*Optional step: set scale option once at app start.
 Scale 1-2: use ONLY if database is expected to be small AND the user may be required to
     manually read/type id's from time to time. Generally not recommended!
 Scale 3 (default): adequate for typical enterprise apps.
@@ -50,22 +33,41 @@ guidTool.setScale(4);    /* optional */
 var myGuid = guidTool();
 console.log('1. My GUID: ', myGuid);
 
-//Breakdown (deconstruct) a  GUID:
+//Deconstruct a  GUID using: breakdown
 var details = guidTool.breakdown(myGuid);
 console.log('2. Breakdown:\n', details);
 
+//date-range database search on primary key using: dateToTimestamp
+var rangeStart = guidTool.dateToTimestamp(new Date('2015-04-01'));
+var rangeEnd = guidTool.dateToTimestamp(new Date('2015-05-01'));
+var sampleQuery = "SELECT * WHERE ID >= '"
+    + rangeStart + "' & ID < '"
+    + rangeEnd + "'";
+console.log('3. Sample date range db search query:\n', sampleQuery);
+
 /* Sample output:
- 1. My GUID:  0icrrhi3vfddv1jor4n29zaorto6r
+ 1. My GUID:  0ics8gx4n4ahny66ro1orv7vi5cdi
  2. Breakdown:
- { guid: '0icrrhi3vfddv1jor4n29zaorto6r',
+ { guid: '0ics8gx4n4ahny66ro1orv7vi5cdi',
  scale: 4,
- timestamp: '0icrrhi3v',
- counter: 'fddv',
- random: '1jor4n29zaorto6r',
- date: Fri Jul 31 2015 08:04:54 GMT-0700 (PDT),
- counterDecimal: 717187 }
+ timestamp: '0ics8gx4n',
+ counter: '4ahn',
+ random: 'y66ro1orv7vi5cdi',
+ date: Fri Jul 31 2015 16:00:21 GMT-0700 (PDT),
+ counterDecimal: 200219 }
+ 3. Sample date range db search query:
+ SELECT * WHERE ID >= '0i7xyvpc0' & ID < '0i94u39c0'
 */
+
 ```
+
+### Browsers
+To use csim-guid in browser simply include the following tag:
+```html
+<!script type='text/javascript' src='path to the included file browser/csim-guid.js'/>
+```
+After that it is exactly the same as in NodeJS.
+Note: the included file browser/csim-guid.js was prepared using [browserify][browserify].  You can, of course, use browserify to distribute csim-guid as part of a bundle just like any other node module. 
 
 ## Scale Option
 The default scale is 3, meaning the random block of generated GUID will have 4x3, or 12 characters.  A scale of 5 then implies 20-character random block.  Once in production it will need to stay fixed forever.  You should consider the following when deciding on the scale option:
@@ -76,8 +78,8 @@ The default scale is 3, meaning the random block of generated GUID will have 4x3
 ## Internal Differences Compared to cuid
 
 * Timestamp block is padded to 9-character fix length, ensuring sequential consistency until Apr 22 5188 (cuid does not pad the timestamp block, thus consistency will be broken on May 25 2059).
-* Counter is reset on every timestamp change, effectively prevent rollover from occurring.  In cuid there is no such preemptive reset and rollover may take place at an unfortunate moment, breaking sequential characteristic.
-* Counter resets at a process-dependent pseudo-random value (computed at startup) rather than 0.  This should produce similar effect to cuid's "finger print".
+* Counter is reset on every timestamp change, effectively preventing rollover from occurring.  In cuid there is no such preemptive reset and rollover may take place at an unfortunate moment, breaking sequential characteristic.
+* Counter resets at a process-dependent pseudo-random value (computed at startup) rather than at 0.  This should produce similar effect to cuid's "finger print".
 * There is no "finger print" block; the space is used for additional random characters instead. 
 * There is no 'c' prefix. 
 * There is no slug function.
@@ -89,3 +91,4 @@ The default scale is 3, meaning the random block of generated GUID will have 4x3
 
 [cuid]: https://www.npmjs.com/package/cuid "Original cuid npm package"
 [eric]: https://www.npmjs.com/~ericelliott
+[browserify]: https://www.npmjs.com/package/browserify
