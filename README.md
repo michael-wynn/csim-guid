@@ -67,7 +67,7 @@ To use csim-guid in browser simply include the following tag:
 <script type='text/javascript' src='path_to_the_included_file_csim-guid.js'/>
 ```
 After that it is exactly the same as in NodeJS.  
-Note: the included file csim-guid is located at node_modules/csim-guid/browser folder. It was prepared using [browserify][browserify].  You can, of course, use browserify to distribute csim-guid as part of a bundle just like any other node module. 
+Note: the included csim-guid.js file is located at node_modules/csim-guid/browser folder. It was prepared using [browserify][browserify].  You can, of course, use browserify to distribute csim-guid as part of a bundle just like any other node module. 
 
 ## Scale Option
 The default scale is 3, meaning the random block of generated GUID will have 4x3, or 12 characters.  A scale of 5 then implies 20-character random block.  Once in production it will need to stay fixed forever.  You should consider the following when deciding on the scale option:
