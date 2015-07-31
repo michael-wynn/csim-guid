@@ -1,6 +1,6 @@
 {
   "name": "csim-guid",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Generate chronologic, collision-resistant globally unique identifier",
   "main": "index.js",
   "scripts": {
@@ -36,12 +36,6 @@
   },
   "directories": {
     "test": "tests"
-  },
-  "dependencies": {
-    "better-assert": "^1.0.2",
-    "karma": "^0.13.3",
-    "karma-chrome-launcher": "^0.2.0",
-    "karma-mocha": "^0.2.0"
   },
   "bugs": {
     "url": "https://github.com/michael-wynn/csim-guid/issues"
