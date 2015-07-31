@@ -1,11 +1,13 @@
 {
   "name": "csim-guid",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Generate chronologic, collision-resistant globally unique identifier",
   "main": "index.js",
   "scripts": {
-    "start": "node ./scripts/print_sample.js",
-    "test": "mocha --watch"
+    "start": "node ./scripts/usage.js",
+    "test": "mocha --watch tests/specs/*.js",
+    "karma": "karma start --browsers Chrome tests/configs/karma.conf.js",
+    "browserify": "browserify -r ./index.js:csim-guid -o browser/csim-guid.js && browserify -r power-assert -o tests/browser-lib/power-assert.js"
   },
   "repository": {
     "type": "git",
@@ -13,13 +15,22 @@
   },
   "keywords": [
     "csim",
-    "guid"
+    "guid",
+    "collision",
+    "resistant",
+    "cuid",
+    "enterprise"
   ],
   "author": "Michael Wynn",
   "license": "ISC",
   "devDependencies": {
-    "mocha": "^2.2.5",
-    "should": "^7.0.2",
-    "sleep": "^2.0.0"
+    "better-assert": "^1.0.2",
+    "karma": "^0.13.3",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-mocha": "^0.2.0",
+    "mocha": "^2.2.5"
+  },
+  "browser": {
+    "csim-guid": "./index.js"
   }
 }

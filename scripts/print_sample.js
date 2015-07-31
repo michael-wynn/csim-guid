@@ -12,7 +12,7 @@ if(typeof csim_guid != 'function') {
 
 var blocksOverride = +process.argv[2];
 if(blocksOverride > 0)
-    csim_guid.setRandomBlocks(blocksOverride);
+    csim_guid.setScale(blocksOverride);
 
 var guid = csim_guid();
 console.log('GUID: ', guid);
